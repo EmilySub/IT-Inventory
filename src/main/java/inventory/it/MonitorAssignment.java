@@ -14,20 +14,39 @@ import javax.persistence.*;
 // monitors are less important to the org, so just keeping track of how many of each model a department has
 public class MonitorAssignment {
 
-    // monitoraAssignment table mapping info
+    // monitorAssignment table mapping info
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "model")
+    @Column(name = "model", nullable = false)
     private String model;
 
-    @Column(name = "departmentNumber")
+    @Column(name = "departmentNumber", nullable = false)
     private String departmentNumber;
 
-    @Column(name = "count")
+    @Column(name = "count", nullable = false)
     private int count;
+
+    // constructors
+
+    public MonitorAssignment(int id, String model, String departmentNumber, int count) {
+        this.id = id;
+        this.model = model;
+        this.departmentNumber = departmentNumber;
+        if (count < 1){
+            this.count = 0;
+        }
+        else{
+            this.count = count;
+        }
+    }
+
+    // no arg - modify later if needed
+    public MonitorAssignment() {
+    }
+
 
     // getters/setters
 

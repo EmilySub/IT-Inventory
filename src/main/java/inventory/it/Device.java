@@ -4,6 +4,7 @@ package inventory.it;
 //Contact at emilyl.sublette@calbaptist.edu
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import sun.security.x509.SerialNumber;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class Device {
     private String CBUNumber;
 
     @Column(name = "SerialNumber", nullable = false)
-    private String Serialnumber;
+    private String serialNumber;
 
     @Column(name = "Make", nullable = false)
     private String make;
@@ -35,14 +36,39 @@ public class Device {
     @Column(name = "PurchaseDate", nullable = false)
     private Date purchaseDate;
 
+    // constructors
+
+    // has a warrantyExpDate
+    public Device(String CBUNumber, String serialNumber, String make, String model, Date warrantyExpDate, Date purchaseDate){
+        this.CBUNumber = CBUNumber;
+        this.serialNumber = serialNumber;
+        this.make = make;
+        this.model = model;
+        this.warrantyExpDate = warrantyExpDate;
+        this.purchaseDate = purchaseDate;
+    }
+
+    // no warrantyExpDate
+    public Device(String CBUNumber, String serialNumber, String make, String model, Date purchaseDate){
+        this.CBUNumber = CBUNumber;
+        this.serialNumber = serialNumber;
+        this.make = make;
+        this.model = model;
+        this.purchaseDate = purchaseDate;
+    }
+
+    // no arg - modify later if needed.
+    public Device() {
+    }
+
     // getters/setters
 
     public String getCBUNumber() {
         return CBUNumber;
     }
 
-    public String getSerialnumber() {
-        return Serialnumber;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
     public String getMake() {
@@ -65,8 +91,8 @@ public class Device {
         this.CBUNumber = CBUNumber;
     }
 
-    public void setSerialnumber(String serialnumber) {
-        Serialnumber = serialnumber;
+    public void setSerialnumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public void setMake(String make) {

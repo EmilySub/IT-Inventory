@@ -26,6 +26,17 @@ public class Department {
     @Column(name = "location", nullable = false)
     private String location;
 
+    // constructors
+    public Department(String departmentNumber, String departmentName, String location) {
+        this.departmentNumber = departmentNumber;
+        this.departmentName = departmentName;
+        this.location = location;
+    }
+
+    //no arg - modify later if needed
+    public Department() {
+    }
+
     // getters and setters
 
     public String getDepartmentNumber() {

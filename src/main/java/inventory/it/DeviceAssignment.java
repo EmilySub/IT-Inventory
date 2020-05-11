@@ -26,6 +26,26 @@ public class DeviceAssignment {
     @Column(name = "username")
     private String username;
 
+    // constructors
+
+    // has a username
+    public DeviceAssignment(String CBUNumber, String departmentNumber, String username) {
+        this.CBUNumber = CBUNumber;
+        this.departmentNumber = departmentNumber;
+        this.username = username;
+    }
+
+    // no username
+    public DeviceAssignment(String CBUNumber, String departmentNumber) {
+        this.CBUNumber = CBUNumber;
+        this.departmentNumber = departmentNumber;
+    }
+
+    // no arg - modify later if needed
+    public DeviceAssignment() {
+    }
+
+
     // getters/setters
 
     public String getCBUNumber() {

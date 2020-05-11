@@ -25,6 +25,7 @@ public class User {
     @Column(name = "emailAddress", nullable = false)
     private String emailAddress;
 
+    // if they do not have a phone, the department secretary's extension will be linked
     @Column(name = "PhoneExt", nullable = false)
     private int phoneExt;
 
@@ -34,6 +35,20 @@ public class User {
     @Column(name = "department", nullable = false)
     private String department;
 
+    // constructors
+
+    public User(String username, String fullName, String emailAddress, int phoneExt, String location, String department) {
+        this.username = username;
+        this.fullName = fullName;
+        this.emailAddress = emailAddress;
+        this.phoneExt = phoneExt;
+        this.location = location;
+        this.department = department;
+    }
+
+    // no arg - modify later if needed
+    public User() {
+    }
 
     // getters/setters
 
