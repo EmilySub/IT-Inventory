@@ -4,10 +4,9 @@ package inventory.it;
 //Contact at emilyl.sublette@calbaptist.edu
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import sun.security.x509.SerialNumber;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "Device")
@@ -54,6 +53,7 @@ public class Device {
         this.serialNumber = serialNumber;
         this.make = make;
         this.model = model;
+        this.warrantyExpDate = null;
         this.purchaseDate = purchaseDate;
     }
 

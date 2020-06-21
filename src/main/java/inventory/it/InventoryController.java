@@ -18,6 +18,7 @@ public class InventoryController {
 
     // DAOs
     private final DepartmentDAO department = new DepartmentDAO();
+    private final DeviceDAO device = new DeviceDAO();
 
 
     // Requests
@@ -56,6 +57,10 @@ public class InventoryController {
             }
             // verify pointer is at the beginning
             results.beforeFirst();
+            // verify first result isn't left out - need to test if this is needed
+            departments.add(new Department(results.getString("departmentNumber"),results.getString("departmentName"),
+                    results.getString("location")));
+            // add the rest
             while(results.next()){
                 departments.add(new Department(results.getString("departmentNumber"),results.getString("departmentName"),
                         results.getString("location")));
@@ -94,6 +99,60 @@ public class InventoryController {
     }
 
 
+    // Device
 
+    @RequestMapping(value = "/addDevice", method = RequestMethod.POST)
+    public boolean addDevice(@RequestBody Device newDevice){
+        return device.addDevice(newDevice);
+    }
+
+
+    // TODO: eliminate duplicate code in try/catch
+
+    @RequestMapping(value = "/getDeviceByCBUNumber", method = RequestMethod.GET)
+    public Device getDeviceByCBUNumber(@RequestBody String CBUNumber){
+        ResultSet result = device.getDeviceByCBUNumber(CBUNumber);
+        try{
+            // if the resultSet is empty
+            if(!result.next()){
+                return null;
+            }
+            // verify pointer is at the beginning of the resultSet
+            result.beforeFirst();
+            return new Device(result.getString("CBUNumber"), result.getString("SerialNumber"),
+                    result.getString("Make"), result.getString("Model"),
+                    result.getDate("WarrantyExpDate"), result.getDate("PurchaseDate"));
+        }
+        catch (SQLException e){
+            return null;
+        }
+    }
+
+    @RequestMapping(value = "/updateDevice")
+    public Device updateDevice(@RequestBody Device updatedDevice){
+        ResultSet result = device.updateDevice(updatedDevice);
+
+        try {
+            if(!result.next()){
+                return null;
+            }
+            result.beforeFirst();
+            return new Device(result.getString("CBUNumber"), result.getString("SerialNumber"),
+                    result.getString("Make"), result.getString("Model"),
+                    result.getDate("WarrantyExpDate"), result.getDate("PurchaseDate"));
+
+        } catch (SQLException e){
+            return null;
+        }
+    }
+
+    @RequestMapping(value="/deleteDevice")
+    public boolean deleteDevice(@RequestBody String CBUNumber){
+        try{
+            return device.deleteDevice(CBUNumber);
+        } catch(SQLException e){
+            return false;
+        }
+    }
 
 }

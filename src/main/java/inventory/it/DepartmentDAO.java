@@ -29,12 +29,17 @@ public class DepartmentDAO {
             @Override
             // map attributes of the new department object to parameters in the sql statement
             public Boolean doInPreparedStatement(PreparedStatement statement)  throws SQLException, DataAccessException {
-                    statement.setString(1, newDept.getDepartmentNumber());
-                    statement.setString(2, newDept.getDepartmentName());
-                    statement.setString(3, newDept.getLocation());
+                    setStatement(newDept, statement);
                     return statement.execute();
             }
         });
+    }
+
+    // reduce duplicate code
+    private void setStatement (Department dept, PreparedStatement statement) throws SQLException, DataAccessException {
+        statement.setString(1, dept.getDepartmentNumber());
+        statement.setString(2, dept.getDepartmentName());
+        statement.setString(3, dept.getLocation());
     }
 
     public ResultSet getDepartmentByNumber(String departmentNumber){
@@ -76,9 +81,7 @@ public class DepartmentDAO {
         jdbcTemplate.execute(update, new PreparedStatementCallback<Boolean>() {
             @Override
             public Boolean doInPreparedStatement(PreparedStatement statement) throws SQLException, DataAccessException {
-                statement.setString(1, updatedDept.getDepartmentName());
-                statement.setString(2, updatedDept.getLocation());
-                statement.setString(3, updatedDept.getDepartmentNumber());
+                setStatement(updatedDept, statement);
                 return statement.execute();
             }
         });
