@@ -1,7 +1,7 @@
 package inventory.it;
 
 //Written by Emily Sublette for CBU Information Technology Dept
-//Contact at emilyl.sublette@calbaptist.edu
+//Contact at em.sublette@gmail.com
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

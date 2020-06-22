@@ -1,7 +1,7 @@
 package inventory.it;
 
 //Written by Emily Sublette for CBU Information Technology Dept
-//Contact at emilyl.sublette@calbaptist.edu
+//Contact at em.sublette@gmail.com
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

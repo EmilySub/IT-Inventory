@@ -1,7 +1,7 @@
 package inventory.it;
 
 //Written by Emily Sublette for CBU Information Technology Dept
-//Contact at emilyl.sublette@calbaptist.edu
+//Contact at em.sublette@gmail.com
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
